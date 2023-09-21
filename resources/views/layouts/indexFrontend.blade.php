@@ -56,15 +56,32 @@
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex">
+                            @auth
+                            <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-responsive-nav-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('log out') }}
+                            </x-responsive-nav-link>
+                        </form>
+                        @endauth
                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <a href=""><i class="ti-heart"></i></a>
                             <div class="dropdown cart">
                                 <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-cart-plus"></i>
+                                    
                                 </a>
+                                
 
-                                <a href={{ route('loginUser.index') }}><i class="fa-regular fa-user"></i></a>
+                                <a href={{ route('loginUser.index') }}><i class="fa-regular fa-user"></i>
+                                  </a>
+
+                                  
+                               
                                 <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <div class="single_product">
     
