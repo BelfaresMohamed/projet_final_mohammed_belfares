@@ -64,7 +64,7 @@
                                     <i class="fas fa-cart-plus"></i>
                                 </a>
 
-                                <a href={{ route('loginUser.index') }}><i class="ti-heart"></i></a>
+                                <a href={{ route('loginUser.index') }}><i class="fa-regular fa-user"></i></a>
                                 <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <div class="single_product">
     
@@ -91,6 +91,7 @@
     @yield('shop')
     @yield('homme')
     @yield('loginUser')
+    @yield('register')
 
     <footer class="footer_part">
         <div class="container">

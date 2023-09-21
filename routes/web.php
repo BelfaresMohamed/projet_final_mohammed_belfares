@@ -24,9 +24,7 @@ Route::get('/contact' , [ContactController::class , "index"])->name("contact.ind
 Route::get('/' , [HomeController::class , "index"])->name("home.index");
 Route::get('/category' , [HomeController::class , "category"])->name("category.index");
 Route::get('/loginUser' , [HomeController::class , "loginUser"])->name("loginUser.index");
-
-
-
+Route::get('/register' , [HomeController::class , "registerUser"])->name("registerUser.index");
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

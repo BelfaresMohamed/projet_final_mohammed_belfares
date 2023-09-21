@@ -18,4 +18,9 @@ class HomeController extends Controller
     public function loginUser(){
         return view('frontend.loginUser');
     }
+
+
+    public function registerUser(){
+        return view('frontend.registerUser');
+    }
 }
