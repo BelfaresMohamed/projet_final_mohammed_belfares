@@ -5,8 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>aranoz</title>
-    <link rel="icon" href="img/favicon.png">
+    <title>Projet</title>
+    <link rel="icon" href="">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -24,15 +24,18 @@
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+
 </head>
 
 <body>
+    <!--::header part start::-->
     <header class="main_menu home_menu">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="/"> <img src="img/logo.png" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -42,53 +45,87 @@
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href={{ route('home.index') }}>Home</a>
+                                    <a class="nav-link" href="/">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href={{ route('category.index') }}>
+                                    <a class="nav-link" href="/shop">
                                         Shop
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href='/contact'>Contact</a>
+                                </li>
+                                @role("admin")
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href={{ route('contact.index') }}>Contact</a>
+                                    <a class="nav-link" href='/alluser'>Backend</a>
                                 </li>
+                                @endrole
+
+                                @role('webmaster')
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href='/allproduitWM'>Backend</a>
+                                </li>
+
+                                @endrole
+
+
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex">
-                            @auth
-                            <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-responsive-nav-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('log out') }}
-                            </x-responsive-nav-link>
-                        </form>
-                        @endauth
                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href=""><i class="ti-heart"></i></a>
-                            <div class="dropdown cart">
-                                <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-cart-plus"></i>
-                                    
-                                </a>
-                                
 
-                                <a href={{ route('loginUser.index') }}><i class="fa-regular fa-user"></i>
-                                  </a>
+                            <a href="/coeur"><i class="ti-heart"></i></a>
 
-                                  
-                               
-                                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div class="single_product">
-    
-                                    </div>
-                                </div> -->
+                            <div class=" position-relative bg-black divpanier">
+
+                                <span class="text-light panier">4</span>
+
+                                <a href="/panier"><i class="fas fa-cart-plus "></i></a>
 
                             </div>
+
+
+
+
+                            @if (Route::has('login'))
+                                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                                    @auth
+                                        <div class=" d-flex ">
+                                            <div class=" d-flex justify-content-center flex-column align-items-center">
+                                                <i class="fa-solid fa-user "></i>
+                                                {{ Auth::user()->name }}
+                                                
+                                            </div>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+
+                                                <x-dropdown-link :href="route('logout')"
+                                                    onclick="event.preventDefault();
+                                                                this.closest('form').submit();">
+
+                                                    <i class="fa-solid fa-right-from-bracket m-0 p-0"></i>
+                                                </x-dropdown-link>
+                                            </form>
+                                        </div>
+                                    @else
+                                        <a href="/login">
+                                            <i class="fa-solid fa-right-to-bracket"></i>
+                                        </a>
+                                    @endauth
+                                </div>
+                            @endif
+
+
+
+
+
+
+
+
+
+
                         </div>
                     </nav>
                 </div>
@@ -103,13 +140,17 @@
                 </form>
             </div>
         </div>
-    </header>
-    @yield('content')
-    @yield('shop')
-    @yield('homme')
-    @yield('loginUser')
-    @yield('register')
 
+    </header>
+
+
+    <!-- Header part end-->
+
+
+    @yield('content')
+
+
+    <!--::footer_part start::-->
     <footer class="footer_part">
         <div class="container">
             <div class="row justify-content-around">
@@ -212,7 +253,6 @@
                 </div>
             </div>
         </div>
-
     </footer>
     <!--::footer_part end::-->
 
@@ -242,6 +282,8 @@
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

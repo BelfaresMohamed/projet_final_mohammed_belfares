@@ -1,9 +1,9 @@
-@extends('layouts.indexFrontend')
+@extends('layouts.frontend')
 @section('content')
 
-
-
-<section class="breadcrumb breadcrumb_bg">
+  <!--================Home Banner Area =================-->
+  <!-- breadcrumb start-->
+  <section class="breadcrumb breadcrumb_bg">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8">
@@ -131,6 +131,7 @@
       </div>
     </div>
   </section>
+  <!-- ================ contact section end ================= -->
 
 
 @endsection
